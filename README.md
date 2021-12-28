@@ -1,13 +1,13 @@
 Some JPEG operations can be lossless if you are using the right software. This project aims to inform your choice.
 
-| Platform | Software                                                                                      |  Rotate  |   Crop   | Blur  | EXIF |
-|----------|-----------------------------------------------------------------------------------------------|:--------:|:--------:|:-----:|:----:|
-| Android  | [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos) | Lossy    | ?        | ?     | ?    |
-| Android  | [Samsung Gallery](https://play.google.com/store/apps/details?id=com.sec.android.gallery3d)    | ?        | ?        | ?     | Kept |
-| Android  | [PrivacyBlur](https://privacyblur.app)                                                        | -        | ?        | Lossy | Lost |
-| Linux    | [cropgui](https://github.com/jepler/cropgui)                                                  | -        | Lossless | -     | Kept |
-| UNIX/Win | [jpegtran](https://jpegclub.org/jpegtran/)                                                    | Lossless | Lossless | -     | ?    |
-| Web      | [CropTool](https://croptool.toolforge.org)                                                    | -        | Lossless | -     | Kept |
+| Platform | Software                                                                                          |  Rotate  |   Crop   | Blur  | EXIF |
+|----------|---------------------------------------------------------------------------------------------------|:--------:|:--------:|:-----:|:----:|
+| Android  | **[Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos)** | ❌ Lossy    | ❌ Lossy        | ❌ Lossy     | ?    |
+| Android  | **[Samsung Gallery](https://play.google.com/store/apps/details?id=com.sec.android.gallery3d)**    | ✅ Lossless        | ?        | ❌ Lossy     | ✅ Kept |
+| Android  | **[PrivacyBlur](https://privacyblur.app)**                                                        | -        | -        | ❌ [Lossy](https://github.com/MATHEMA-GmbH/privacyblur/issues/79) | ❌ Lost |
+| Linux    | **[cropgui](https://github.com/jepler/cropgui)**                                                  | -        | ✅ Lossless | -     | ✅ Kept |
+| UNIX/Win | **[jpegtran](https://jpegclub.org/jpegtran/)**                                                    | ✅ Lossless | ✅ Lossless | -     | ✅ Not even updated |
+| Web      | **[CropTool](https://croptool.toolforge.org)**                                                    | -        | ✅ Lossless | -     | ✅ Kept |
 
 `-` means the software does not offer that feature.
 
@@ -35,6 +35,6 @@ Thanks a lot!
 1. With the phone's default camera app, take a picture of a building with as few red areas as possible, and less than 50% of sky.
 2. If the app overwrites files, make a copy for each operation.
 3. Rotate the picture by 90 degrees, save, exit the app. Do it four times.
-4. Crop the bottom-right of the picture (then resize the image to the same as the original so that the comparison works, in GIMP Image>Canvas Size).
+4. Crop the bottom-right of the picture (then on desktop use reliably lossless software to resize to a factor of 16 both that image and the original, so that the comparison works: `jpegtran -outfile out.jpg -copy all -crop 1600x1600+0+0 original.jpg`).
 5. Blur a tiny portion of the picture.
-6. Go to https://online-image-comparison.com (Highlight Color: Red, Fuzz: 1) and compare each image to the original. If there is any loss, save the result.
+6. Go to https://online-image-comparison.com (Highlight Color: Red, Fuzz: 0) and compare each image to the original. If there is any loss, save the result.
