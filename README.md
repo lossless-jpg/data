@@ -28,7 +28,7 @@ Ideal cropping tools let the user choose between lossless crop and lossy crop, w
 Please do not hesitate to add more software, add information, add operations!
 To do so, please send a pull request or create an issue.
 To add new software, please join 4 sample pictures as seen in the existing directories.
-GUI software, command-line software, and even libraries are welcome.
+Mobile apps, desktop software, command-line software, and even libraries are welcome.
 Thanks a lot!
 
 # Methodology
