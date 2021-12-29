@@ -16,9 +16,7 @@ This project aims to inform your choice of software.
 
 **Rotating** a JPEG should be lossless, as long as the length and height are a multiple of the block size (usually 16).
 
-**Cropping** a JPEG should be lossless:
-- if the crop does not remove the top-left corner of the image.
-- or if the height removed from the top and width removed from the left are a multiple of the block size.
+**Cropping** a JPEG should be lossless if the crop does not remove the top-left corner of the image, or if the height removed from the top and width removed from the left are a multiple of the block size.
 Ideal cropping tools let the user choose between lossless crop and lossy crop, with lossless crop snapping the cropping area to JPEG blocks.
 
 **Blurring** (or drawing over a face/etc for privacy reasons) should only affect the blurred area and the blocks directly around it. The rest of the picture should be left intact. This can be implemented with jpegtran: 1) Use lossless crop to split the picture into elementary JPEG blocks. 2) Overwrite the blocks where blurring was applied (these blocks will obviously not be lossless). 3) Use lossless join (["de-`crop`" then `drop`](https://stackoverflow.com/a/29615714/226958)) to put back the blocks together into a full picture and save it.
@@ -44,12 +42,14 @@ Thanks a lot!
 
 ## Quality
 
-If you are taking a picture of your grandpa or baby, then the level of quality loss will probably not bother you.
-On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Future researchers zooming into a small detail of your picture will be thankful to have the real original pixels.
+If you are taking a picture of your grandpa or baby, then a tiny bit of quality loss will probably not bother you.
+On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Next-century researchers analyzing a tiny detail of your picture might be thankful to have the real original pixels.
 
 ## File size
 
-[JPEG tools have no idea what level of quality your picture has](https://photo.stackexchange.com/a/88186/1498). So when saving they use a default quality, or sometimes let you choose using a slider. All outcomes are regrettable:
+[JPEG tools have no idea what level of quality your picture has](https://photo.stackexchange.com/a/88186/1498). So when saving the file, they use an arbitrary quality, or sometimes let you choose using a slider. All outcomes are regrettable:
 - Choose a higher quality than needed: you get an unnecessarily bigger file size.
 - Choose a lower quality than needed: you get artefacts visible to the naked eye, the picture looks more "pixelated" and has wrong colors.
-- Even if you choose a similar quality setting, different software have different algorithms, so you will probably end up with a bigger file of lower quality.
+- Even if you choose a similar quality setting, different tools have different algorithms, so you will probably end up with a bigger file of lower quality.
+
+Using lossless software elegantly solves these problems, keeping the same file size with no quality loss.
