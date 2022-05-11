@@ -28,6 +28,22 @@ Ideal cropping tools let the user choose between lossless crop and lossy crop, w
 
 **Blurring** (or drawing over a face/etc for privacy reasons) should only affect the blurred area and the blocks directly around it. The rest of the picture should be left intact. This [can](https://photo.stackexchange.com/a/71865/1498) be implemented with jpegtran: 1) Use lossless crop to split the picture into elementary JPEG blocks. 2) Overwrite the blocks where blurring was applied (these blocks will obviously not be lossless). 3) Use lossless join (["de-`crop`" then `drop`](https://stackoverflow.com/a/29615714/226958)) to put back the blocks together into a full picture and save it.
 
+# Should I care?
+
+## Quality
+
+If you are taking a picture of your grandpa or baby, then a tiny bit of quality loss will probably not bother you.
+On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Next-century researchers analyzing a tiny detail of your picture might be thankful to have the real original pixels.
+
+## File size
+
+[JPEG tools have no idea what level of quality your picture has](https://photo.stackexchange.com/a/88186/1498). So when saving the file, they use an arbitrary quality, or sometimes let you choose using a slider. All outcomes are regrettable:
+- Choose a higher quality than needed: you get an unnecessarily bigger file size.
+- Choose a lower quality than needed: you get artefacts visible to the naked eye, the picture looks more "pixelated" and has wrong colors.
+- Even if you choose a similar quality setting, different tools have different algorithms, so you will probably end up with a bigger file of lower quality.
+
+Using lossless software elegantly solves these problems, keeping the same file size with no quality loss.
+
 # Help wanted
 
 Please do not hesitate to add more software, add information, add operations!
@@ -44,19 +60,3 @@ Thanks a lot!
 4. Crop the original picture so that only the top-left part remains, save as `cropped.jpg`. Then on desktop use reliably lossless software to crop both that image and the original to a size which is a factor of 16 (such as 1600x1600), so that they can be compared. Example: `jpegtran -outfile cropped_jpegtran_cropped.jpg -copy all -crop 1600x1600+0+0 cropped.jpg`, `jpegtran -outfile original_jpegtran_cropped.jpg -copy all -crop 1600x1600+0+0 original.jpg`. Please note that jpegtran does not update EXIF thumbnails.
 5. Blur a tiny portion of the picture, save as `blurred.jpg`. If blurring is not available, use the pencil tool or anything that can hide a face.
 6. Go to https://online-image-comparison.com (Highlight Color: Red, Fuzz: **0**) and compare each image to the original. Save all results with the `_comparison` suffix.
-
-# Should I care?
-
-## Quality
-
-If you are taking a picture of your grandpa or baby, then a tiny bit of quality loss will probably not bother you.
-On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Next-century researchers analyzing a tiny detail of your picture might be thankful to have the real original pixels.
-
-## File size
-
-[JPEG tools have no idea what level of quality your picture has](https://photo.stackexchange.com/a/88186/1498). So when saving the file, they use an arbitrary quality, or sometimes let you choose using a slider. All outcomes are regrettable:
-- Choose a higher quality than needed: you get an unnecessarily bigger file size.
-- Choose a lower quality than needed: you get artefacts visible to the naked eye, the picture looks more "pixelated" and has wrong colors.
-- Even if you choose a similar quality setting, different tools have different algorithms, so you will probably end up with a bigger file of lower quality.
-
-Using lossless software elegantly solves these problems, keeping the same file size with no quality loss.
