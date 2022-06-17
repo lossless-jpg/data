@@ -21,12 +21,12 @@ This project aims to inform your choice of software.
 
 # Operations
 
-**Rotating** a JPEG should be lossless, as long as the length and height are a multiple of the block size (usually 16).
+**Rotating** a JPEG must be lossless, as long as the length and height are a multiple of the block size (usually 16).
 
-**Cropping** a JPEG should be lossless if the crop does not remove the top-left corner of the image, or if the height removed from the top and width removed from the left are a multiple of the block size.
-Ideal cropping tools let the user choose between lossless crop and lossy crop, with lossless crop snapping the cropping area to JPEG blocks.
+**Cropping** a JPEG must be lossless if the crop does not remove the top-left corner of the image, or if the height removed from the top and width removed from the left are a multiple of the block size.
+Ideal cropping tools let the user choose between lossless crop and lossy crop, with lossless crop snapping the crop area to JPEG blocks.
 
-**Blurring** (or drawing over a face/etc for privacy reasons) should only affect the blurred area and the blocks directly around it. The rest of the picture should be left intact. This [can](https://photo.stackexchange.com/a/71865/1498) be implemented with jpegtran: 1) Use lossless crop to split the picture into elementary JPEG blocks. 2) Overwrite the blocks where blurring was applied (these blocks will obviously not be lossless). 3) Use lossless join (["de-`crop`" then `drop`](https://stackoverflow.com/a/29615714/226958)) to put back the blocks together into a full picture and save it.
+**Blurring** (or drawing over a face/etc for privacy reasons) should only affect the blurred area and the blocks directly around it. The rest of the picture must be left intact.
 
 # Should I care?
 
