@@ -28,12 +28,23 @@ Ideal cropping tools let the user choose between lossless crop and lossy crop, w
 
 **Blurring** (or drawing over a face/etc for privacy reasons) should only affect the blurred area and the blocks directly around it. The rest of the picture must be left intact.
 
+## Example of unwanted loss when blurring
+
+I blurred passer-bys in the same politician picture using [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos) and [JPEG Cropper](https://play.google.com/store/apps/details?id=jp.kame.jpegcropper). then compared with the original. Here is how each tool performed:
+
+| App | Blurred picture | Difference with original |
+|---|---|---|
+| Google Photos | ![pic](https://github.com/lossless-jpg/data/blob/main/samples/example/politician_google_photos.jpg?raw=true) | ![pic](https://github.com/lossless-jpg/data/blob/main/samples/example/politician_google_photos_comparison.jpg?raw=true) |
+| JPEG Cropper | ![pic](https://github.com/lossless-jpg/data/blob/main/samples/example/politician_jpeg_cropper.jpg?raw=true) | ![pic](https://github.com/lossless-jpg/data/blob/main/samples/example/politician_jpeg_cropper_comparison.jpg?raw=true) |
+
+As you can see, Google Photos unfortunately modified most of the picture, whereas JPEG Cropper only modified the blurred part, which is ideal.
+
 # Should I care?
 
 ## Quality
 
 If you are taking a picture of your grandpa or baby, then a tiny bit of quality loss will probably not bother you.
-On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Next-century researchers analyzing a tiny detail of your picture might be thankful to have the real original pixels.
+On the other hand, if the picture is destined to have historical or encyclopedic value, then it is probably worth the effort trying to use lossless software. Next-century researchers analyzing a tiny detail of your picture (like the politician in the example above) might be thankful to have the real original pixels.
 
 ## File size
 
